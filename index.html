@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Адвокатская коллегия "СВО" | Бесплатная консультация</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Georgia', serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/1280px-Flag_of_Russia.svg.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* главный контейнер */
+        .wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            backdrop-filter: brightness(0.95);
+        }
+
+        /* карточки и блоки */
+        .glass-card {
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            padding: 30px 25px;
+            margin-bottom: 35px;
+            transition: all 0.2s;
+        }
+
+        /* заголовки */
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #FFD966, #FFAA00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .sub {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-top: 8px;
+            font-style: italic;
+            color: #FFE0A3;
+        }
+
+        /* главная кнопка */
+        .btn-glavnaya {
+            display: block;
+            width: fit-content;
+            margin: 35px auto 20px auto;
+            background: linear-gradient(95deg, #1E5AFE, #0040c0);
+            border: none;
+            padding: 18px 48px;
+            font-size: 1.7rem;
+            font-weight: bold;
+            border-radius: 60px;
+            text-decoration: none;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 18px rgba(0, 100, 255, 0.6);
+            transition: 0.2s;
+            cursor: pointer;
+            font-family: inherit;
+            border: 1px solid rgba(255,215,0,0.6);
+        }
+
+        .btn-glavnaya:hover {
+            transform: scale(1.02);
+            background: linear-gradient(95deg, #3F7AFF, #0055ee);
+            box-shadow: 0 0 28px #0066ff;
+        }
+
+        /* сетка услуг */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .service-item {
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 28px;
+            padding: 18px 12px;
+            text-align: center;
+            border: 1px solid rgba(255,200,50,0.5);
+            transition: 0.2s;
+        }
+
+        .service-item:hover {
+            background: rgba(0, 0, 0, 0.75);
+            border-color: #FFD966;
+        }
+
+        .service-icon {
+            font-size: 2.7rem;
+            margin-bottom: 8px;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #FFD966;
+        }
+
+        .service-desc {
+            font-size: 0.85rem;
+            color: #ddd;
+        }
+
+        /* отзывы */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .review-card {
+            background: rgba(20, 20, 30, 0.7);
+            border-left: 5px solid gold;
+            border-radius: 24px;
+            padding: 16px;
+        }
+
+        .stars {
+            color: gold;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        /* лицензия */
+        .license {
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #ccccaa;
+            border-top: 1px dashed #FFD966;
+            padding-top: 20px;
+            margin-top: 15px;
+        }
+
+        /* вторая страница форма записи */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .paper-plane {
+            background: #2A6EFF;
+            width: 80px;
+            height: 80px;
+            border-radius: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 35px auto;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 0 18px #2A6EFF;
+            border: 2px solid white;
+        }
+
+        .paper-plane:hover {
+            transform: scale(1.05);
+            background: #1E5AFE;
+            box-shadow: 0 0 30px #5B8CFF;
+        }
+
+        .plane-symbol {
+            font-size: 3.1rem;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4));
+        }
+
+        .toast-message {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            right: 20px;
+            background: #1F3A3F;
+            border-left: 8px solid #FFD966;
+            border-radius: 28px;
+            padding: 18px 25px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+            z-index: 1500;
+        }
+
+        .footer-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        button {
+            background: none;
+            border: none;
+        }
+
+        @media (max-width: 680px) {
+            h1 { font-size: 2rem; }
+            .btn-glavnaya { font-size: 1.2rem; padding: 14px 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- СТРАНИЦА 1: ГЛАВНЫЙ ЛЕНДИНГ -->
+    <div id="page1" class="page active">
+        <div class="glass-card">
+            <h1>⚖️ АДВОКАТСКАЯ КОЛЛЕГИЯ "СВО" ⚖️</h1>
+            <div class="sub">Защита прав героев &nbsp;|&nbsp; Бесплатно участникам СВО и их семьям</div>
+            
+            <!-- Кнопка перехода на вторую страницу -->
+            <button class="btn-glavnaya" id="goToAuthBtn">🎖️ ПОЛУЧИТЬ БЕСПЛАТНУЮ КОНСУЛЬТАЦИЮ</button>
+            
+            <!-- Услуги -->
+            <div class="services-grid">
+                <div class="service-item"><div class="service-icon">📜</div><div class="service-title">Земельные споры</div><div class="service-desc">Участки для героев, защита прав</div></div>
+                <div class="service-item"><div class="service-icon">💰</div><div class="service-title">Выплаты и ЕДВ</div><div class="service-desc">Оспаривание отказов, перерасчёт</div></div>
+                <div class="service-item"><div class="service-icon">🏠</div><div class="service-title">Жилищные вопросы</div><div class="service-desc">Признание нуждающимся, сертификаты</div></div>
+                <div class="service-item"><div class="service-icon">👨‍👩‍👧</div><div class="service-title">Алименты</div><div class="service-desc">Снижение/взыскание, долги</div></div>
+                <div class="service-item"><div class="service-icon">⚕️</div><div class="service-title">Льготы ветеранам</div><div class="service-desc">Оформление, налоги, ЖКУ</div></div>
+                <div class="service-item"><div class="service-icon">🏛️</div><div class="service-title">Судебный процесс</div><div class="service-desc">Представительство во всех инстанциях</div></div>
+                <div class="service-item"><div class="service-icon">📄</div><div class="service-title">Статус ветерана</div><div class="service-desc">Признание участником боевых действий</div></div>
+                <div class="service-item"><div class="service-icon">💔</div><div class="service-title">Семейные споры</div><div class="service-desc">Развод, раздел имущества</div></div>
+            </div>
+        </div>
+
+        <!-- отзывы + лицензия -->
+        <div class="glass-card">
+            <div class="reviews-grid">
+                <div class="review-card"><div class="stars">★★★★★</div>«Спасибо адвокату, добился выплаты как участник СВО. Быстро и четко. Спасибо!» — Андрей, Москва</div>
+                <div class="review-card"><div class="stars">★★★★★</div>«Оформили землю без проблем, коллектив знает своё дело. Очень благодарен!» — Сергей, Ростов-на-Дону</div>
+                <div class="review-card"><div class="stars">★★★★★</div>«Помогли получить удостоверение ветерана. Всё оперативно, спасибо!» — Дмитрий, Казань</div>
+                <div class="review-card"><div class="stars">★★★★★</div>«Консультация действительно бесплатная, помогли советом и делом. 10/10» — Елена, СПБ</div>
+            </div>
+            <div class="license">⚜️ Лицензия Министерства юстиции РФ № 77-ОГ-0123456789 от 15.02.2020 ⚜️</div>
+            <div class="footer-contacts" style="margin-top: 20px;">
+                <span>📞 +7 (495) 123-45-67</span>
+                <span>🏛️ г. Москва, ул. Тверская, д. 1</span>
+                <span>⏰ Ежедневно 09:00 – 21:00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- СТРАНИЦА 2: АВТОРИЗАЦИЯ через TELEGRAM -->
+    <div id="page2" class="page">
+        <div class="glass-card" style="text-align: center;">
+            <h2>📋 ЗАПИСЬ НА БЕСПЛАТНУЮ КОНСУЛЬТАЦИЮ</h2>
+            <p style="margin-top: 16px; font-size: 1.1rem;">Для оформления заявки необходимо авторизоваться через Telegram</p>
+            <p style="margin: 10px 0 0; color: #FFD966;">🔐 Это нужно для связи с вами и подтверждения статуса</p>
+            
+            <!-- Кнопка-самолетик, ведущая на web.telegram.org -->
+            <div id="telegramAuthBtn" class="paper-plane">
+                <div class="plane-symbol">✈️</div>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.85rem;">Нажмите на ✈️, чтобы авторизоваться через Telegram</div>
+        </div>
+    </div>
+</div>
+
+<!-- тост уведомление -->
+<div id="toastMsg" class="toast-message">📋 Благодарим за заявку! С Вами свяжется первый освободившийся специалист в течение рабочего дня.</div>
+
+<script>
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const goToAuth = document.getElementById('goToAuthBtn');
+    const telegramBtn = document.getElementById('telegramAuthBtn');
+    const toast = document.getElementById('toastMsg');
+    
+    // Переход на страницу авторизации (лендинг -> второй экран)
+    goToAuth.addEventListener('click', () => {
+        page1.classList.remove('active');
+        page2.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    function showThankYou() {
+        toast.style.opacity = '1';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+        }, 5500);
+    }
+    
+    // обработка нажатия на бумажный самолетик
+    telegramBtn.addEventListener('click', () => {
+        // Открываем Telegram Web в новой вкладке
+        window.open('https://web.telegram.org/a/', '_blank');
+        
+        // Отслеживаем, вернулся ли пользователь на страницу (редирект назад)
+        let hasShown = false;
+        const handleVisibility = () => {
+            if (!document.hidden && !hasShown) {
+                hasShown = true;
+                showThankYou();
+                document.removeEventListener('visibilitychange', handleVisibility);
+                // опционально: через 2 секунды возвращаем на главную страницу
+                setTimeout(() => {
+                    page2.classList.remove('active');
+                    page1.classList.add('active');
+                }, 2800);
+            }
+        };
+        
+        // Если пользователь вернулся на вкладку после авторизации
+        document.addEventListener('visibilitychange', handleVisibility);
+        
+        // fallback: если не вернулся через 30 секунд, всё равно считаем заявку принятой (но не показываем тост повторно)
+        setTimeout(() => {
+            if (!hasShown) {
+                hasShown = true;
+                showThankYou();
+                document.removeEventListener('visibilitychange', handleVisibility);
+                setTimeout(() => {
+                    page2.classList.remove('active');
+                    page1.classList.add('active');
+                }, 2500);
+            }
+        }, 30000);
+    });
+    
+    // дополнительно: если пользователь вернулся на страницу вручную, но тост не сработал
+    window.addEventListener('focus', () => {
+        const authPageActive = page2.classList.contains('active');
+        if (authPageActive && sessionStorage.getItem('showedThanks') !== 'true') {
+            sessionStorage.setItem('showedThanks', 'true');
+            showThankYou();
+            setTimeout(() => {
+                page2.classList.remove('active');
+                page1.classList.add('active');
+            }, 2500);
+        }
+    });
+</script>
+</body>
+</html>
